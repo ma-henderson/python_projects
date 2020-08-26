@@ -132,15 +132,18 @@ while flag == True:
 
     # WORD: check if word is correct
     elif len(data['guess']) > 1: 
-        if data['guess'] == words[game] and flag == True:
-          # TRUE: Give player a point, reset state, flag state change
-          data['score'] += 1
-          data['words'].append(words[game])
-          game += 1
-          state = -1
-        # FALSE: send message_wrong, next player/state
-        else:
-          guessed_words.append(data['guess'])
+      if data['guess'] == words[game] and flag == True:
+        # TRUE: Give player a point, reset state, flag state change
+        data['score'] += 1
+        data['words'].append(words[game])
+        print("\n ---------- WINNER WINNER ------------\n")
+        print("\t" + str(player) + " got the word right! it was: " + data['guess'])
+        # create scoreboard function
+        game += 1
+        var_cleanup()
+      # FALSE: send message_wrong, next player/state
+      else:
+        guessed_words.append(data['guess'])
     # ELSE: take input again
     else:
       data["guess"] = input(str(player) + ", please enter your guess: ")
